@@ -1,22 +1,23 @@
 import { useState } from "react";
 import axios from "axios";
 
-//const
-const localhost = "http://localhost:4000/posts";
+import { localhostPost } from "./App";
 
 export default function PostCreate() {
 	const [title, setTitle] = useState("");
 
 	const submitting = async (e) => {
-		e.preventdefault();
+		e.preventDefault();
 
-		await axios.post(localhost, {
+		await axios.post(`${localhostPost}/posts`, {
 			title,
 		});
+
+		setTitle("");
 	};
 
 	return (
-		<div className={"container"}>
+		<div>
 			<form onSubmit={submitting}>
 				<div className={"row m-3"}>
 					<label>Title</label>
