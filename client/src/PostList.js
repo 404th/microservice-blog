@@ -3,13 +3,13 @@ import axios from "axios";
 import CommentCreate from "./CommentCreate";
 import CommentList from "./CommentList";
 
-import { localhostPost } from "./App";
+import { localhostQuery } from "./App";
 
 export default function PostList() {
 	const [posts, setPosts] = useState({});
 
 	const fetchData = async () => {
-		const req = await axios.get(`${localhostPost}/posts`);
+		const req = await axios.get(`${localhostQuery}/posts`);
 		setPosts(req.data);
 	};
 
@@ -25,7 +25,7 @@ export default function PostList() {
 				key={p.id}>
 				<div className='card-body'>
 					<h4>{p.title}</h4>
-					<CommentList postId={p.id} />
+					<CommentList comments={p.comments} />
 					<CommentCreate postId={p.id} />
 				</div>
 			</div>

@@ -41,5 +41,5 @@ app.post("/events", (req, res) => {
 });
 
 app.listen(4001, () => {
-	console.log("Comments server is running on PORT:4001");
+	console.log("Comments server is running on PORT:", 4001);
 });

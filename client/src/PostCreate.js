@@ -4,14 +4,14 @@ import axios from "axios";
 import { localhostPost } from "./App";
 
 export default function PostCreate() {
-	const [newPost, setNewPost] = useState("");
+	const [title, setTitle] = useState("");
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		await axios.post(`${localhostPost}/posts`, {
-			newPost,
+			title,
 		});
-		setNewPost("");
+		setTitle("");
 	};
 
 	return (
@@ -20,9 +20,9 @@ export default function PostCreate() {
 				<div className={"form-group row m-3"}>
 					<label>Title</label>
 					<input
-						value={newPost}
+						value={title}
 						className={"form-control"}
-						onChange={(e) => setNewPost(e.target.value)}
+						onChange={(e) => setTitle(e.target.value)}
 					/>
 				</div>
 				<button className={"btn btn-danger"}>Submit</button>
