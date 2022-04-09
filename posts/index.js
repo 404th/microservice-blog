@@ -1,19 +1,18 @@
 const express = require("express");
 const { randomBytes } = require("crypto");
 const cors = require("cors");
-// const bodyParser = require("body-parser");
-const app = express();
 const axios = require("axios");
+const bodyParser = require("body-parser");
 
-// app.use(bodyParser());
-app.use(express.json());
+const app = express();
+app.use(bodyParser.json());
 app.use(cors());
 
 // fake db
 const posts = {};
 
 app.get("/posts", (req, res) => {
-	res.status(200).send(posts);
+	res.send(posts);
 });
 
 app.post("/posts", async (req, res) => {
@@ -26,7 +25,7 @@ app.post("/posts", async (req, res) => {
 		title,
 	};
 
-	await axios("localhost:4005/events", {
+	await axios.post("http://localhost:4005/events", {
 		type: "PostCreated",
 		data: {
 			id,
@@ -35,6 +34,12 @@ app.post("/posts", async (req, res) => {
 	});
 
 	res.status(201).send(posts[id]);
+});
+
+app.post("/events", (req, res) => {
+	console.log(req.body.type);
+
+	res.send({});
 });
 
 app.listen(4000, () => {

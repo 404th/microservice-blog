@@ -6,7 +6,14 @@
 	"scripts": {
 		"start": "nodemon index.js"
 	},
-	"keywords": ["microservice", "nodejs", "golang", "go", "reactjs", "react"],
+	"keywords": [
+		"microservice",
+		"nodejs",
+		"golang",
+		"go",
+		"reactjs",
+		"react"
+	],
 	"author": "404th",
 	"license": "ISC",
 	"dependencies": {

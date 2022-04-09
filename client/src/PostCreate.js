@@ -4,32 +4,28 @@ import axios from "axios";
 import { localhostPost } from "./App";
 
 export default function PostCreate() {
-	const [title, setTitle] = useState("");
+	const [newPost, setNewPost] = useState("");
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		await axios.post(`${localhostPost}/posts`, {
-			title,
+			newPost,
 		});
-		setTitle("");
+		setNewPost("");
 	};
 
 	return (
 		<div>
 			<form onSubmit={onSubmit}>
-				<div className={"row m-3"}>
+				<div className={"form-group row m-3"}>
 					<label>Title</label>
 					<input
-						type='text'
-						onChange={(e) => setTitle(e.target.value)}
-						value={title}
+						value={newPost}
+						className={"form-control"}
+						onChange={(e) => setNewPost(e.target.value)}
 					/>
 				</div>
-				<div className='m-3'>
-					<button className={"btn btn-danger"} type={"submit"}>
-						Submit
-					</button>
-				</div>
+				<button className={"btn btn-danger"}>Submit</button>
 			</form>
 		</div>
 	);

@@ -3,6 +3,7 @@ import PostList from "./PostList";
 
 export const localhostPost = "http://localhost:4000";
 export const localhostComment = "http://localhost:4001";
+export const localhostEventBus = "http://localhost:4005";
 
 export default function App() {
 	return (

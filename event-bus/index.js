@@ -1,23 +1,26 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const cors = require("cors");
-const app = express();
 
-app.use(express.json());
+const app = express();
+app.use(bodyParser.json());
 app.use(cors());
 
 app.post("/events", (req, res) => {
-	const events = req.body;
+	const event = req.body;
 
-	app.post("localhost:4000/events", events);
-	app.post("localhost:4001/events", events);
-	app.post("localhost:4002/events", events);
+	app.post("http://localhost:4000/events", event).catch((err) => {
+		console.log(err.message);
+	});
+	app.post("http://localhost:4001/events", event).catch((err) => {
+		console.log(err.message);
+	});
 
 	res.send({
-		status: 200,
-		message: "OK",
+		status: "OK",
 	});
 });
 
-app.listen(5000, () => {
+app.listen(4005, () => {
 	console.log("Event-bus is running on PORT:", 4005);
 });
