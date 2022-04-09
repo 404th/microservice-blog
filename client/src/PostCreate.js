@@ -6,19 +6,17 @@ import { localhostPost } from "./App";
 export default function PostCreate() {
 	const [title, setTitle] = useState("");
 
-	const submitting = async (e) => {
+	const onSubmit = async (e) => {
 		e.preventDefault();
-
 		await axios.post(`${localhostPost}/posts`, {
 			title,
 		});
-
 		setTitle("");
 	};
 
 	return (
 		<div>
-			<form onSubmit={submitting}>
+			<form onSubmit={onSubmit}>
 				<div className={"row m-3"}>
 					<label>Title</label>
 					<input
@@ -28,7 +26,7 @@ export default function PostCreate() {
 					/>
 				</div>
 				<div className='m-3'>
-					<button className={"btn btn-danger"} type='submit'>
+					<button className={"btn btn-danger"} type={"submit"}>
 						Submit
 					</button>
 				</div>

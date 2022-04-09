@@ -7,10 +7,6 @@ app.use(express.json());
 app.use(cors());
 // fake db
 const commentsByPostID = {};
-// {
-//     id:[{commentId, content}],
-//     id:[{commentId, content}]
-// }
 
 app.get("/posts/:id/comments", (req, res) => {
 	res.status(200).send(commentsByPostID[req.params.id] || []);
