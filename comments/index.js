@@ -2,6 +2,7 @@ const express = require("express");
 const { randomBytes } = require("crypto");
 const cors = require("cors");
 const app = express();
+const axios = require("axios");
 
 app.use(express.json());
 app.use(cors());
@@ -21,7 +22,7 @@ app.post("/posts/:id/comments", async (req, res) => {
 
 	commentsByPostID[req.params.id] = particular_comments;
 
-	await app.post("http://localhost:4005/events", {
+	await axios.post("http://localhost:4005/events", {
 		type: "CommentCreated",
 		data: {
 			id: commentID,
